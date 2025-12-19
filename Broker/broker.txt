@@ -1,0 +1,27 @@
+# Starting Zookeeper
+bin/zookeeper-server-start.sh config/zookeeper.properties
+
+# Starting Kafka
+bin/kafka-server-start.sh config/server.properties
+
+# Topics creation
+1. Tasks topic — 2 partitions, replication factor 1
+bin/kafka-topics.sh --create \
+  --topic tasks \
+  --bootstrap-server 10.244.232.163:9092 \
+  --partitions 2 \
+  --replication-factor 1
+
+2. Results topic — single partition
+bin/kafka-topics.sh --create \
+  --topic results \
+  --bootstrap-server 10.244.232.163:9092 \
+  --partitions 1 \
+  --replication-factor 1
+
+3. Heartbeats topic — single partition
+bin/kafka-topics.sh --create \
+  --topic heartbeats \
+  --bootstrap-server 10.244.232.163:9092 \
+  --partitions 1 \
+  --replication-factor 1
